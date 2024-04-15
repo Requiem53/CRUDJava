@@ -3,18 +3,47 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="367.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228f2_2.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="167.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
          <children>
-            <TextField fx:id="tfnewUsername" text="New username" />
-            <Button fx:id="setNewUsername" mnemonicParsing="false" text="Set new username" />
-            <TextField fx:id="tfnewPassword" text="New password" />
-            <Button fx:id="setNewPassword" mnemonicParsing="false" text="Set new password" />
+            <TextField fx:id="tfNewUsername" promptText="New username">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <Button fx:id="btnsetNewUsername" mnemonicParsing="false" onAction="#setNewUsername" text="Set new username">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <PasswordField fx:id="tfNewPassword" promptText="New Password">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="setNewPassword" mnemonicParsing="false" onAction="#setNewPassword" text="Set new password">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#onDeleteAccount" text="DELETE ACCOUNT" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Note: This will send you back to the login screen" />
+            <Text fx:id="tfStatus" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+            <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#onLogout" text="Logout">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </children>

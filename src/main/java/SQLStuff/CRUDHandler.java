@@ -76,7 +76,7 @@ public class CRUDHandler {
                 String password = resultSet.getString("password");
 
                 System.out.println("ID: " + id + ", Username: " + username + ", Password: " + password);
-                users.add(new User(username, password));
+                users.add(new User(id, username, password));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,6 +93,40 @@ public class CRUDHandler {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             preparedStatement.setInt(3, userIdToUpdate);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Data updated successfully!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUsername(int userIdToUpdate, String username){
+        try (Connection connection = MySQLConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "UPDATE users SET username = ? WHERE id = ?")) {
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setInt(2, userIdToUpdate);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Data updated successfully!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePassword(int userIdToUpdate, String password){
+        try (Connection connection = MySQLConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "UPDATE users SET password = ? WHERE id = ?")) {
+
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, userIdToUpdate);
 
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {

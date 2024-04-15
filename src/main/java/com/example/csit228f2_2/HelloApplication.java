@@ -30,13 +30,22 @@ import java.util.List;
 
 public class HelloApplication extends Application {
     public static List<User> users;
+    public static int loggedInUserID = -1;
     public static void main(String[] args) {
         launch();
     }
+    public static Stage stage;
+    public static Scene scene;
+
+    public static TextField tfUsername;
+    public static PasswordField pfPassword;
+    public static Text actionTarget;
 
     @Override
     public void start(Stage stage) throws Exception {
         CRUDHandler crudHandler = new CRUDHandler();
+
+        HelloApplication.stage = stage;
 
         AnchorPane pnMain = new AnchorPane();
         GridPane grid = new GridPane();
@@ -55,6 +64,7 @@ public class HelloApplication extends Application {
         grid.add(lblUsername, 0, 1);
 
         TextField tfUsername = new TextField();
+        HelloApplication.tfUsername = tfUsername;
         tfUsername.setFont(Font.font(35));
         grid.add(tfUsername, 1, 1);
 
@@ -63,7 +73,8 @@ public class HelloApplication extends Application {
         lblPassword.setFont(Font.font(40));
         grid.add(lblPassword, 0, 2);
 
-        TextField pfPassword = new PasswordField();
+        PasswordField pfPassword = new PasswordField();
+        HelloApplication.pfPassword = pfPassword;
         pfPassword.setFont(Font.font(35));
         grid.add(pfPassword, 1, 2);
 
@@ -73,10 +84,13 @@ public class HelloApplication extends Application {
         hbShow.setAlignment(Pos.CENTER);
         hbShow.setMaxWidth(150);
         TextField tfPassword = new TextField();
+
         tfPassword.setFont(Font.font(35));
         grid.add(tfPassword, 1, 2);
         tfPassword.setVisible(false);
         grid.add(hbShow, 2, 2);
+
+
 
         btnShow.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -103,6 +117,7 @@ public class HelloApplication extends Application {
         hbSignIn.setAlignment(Pos.CENTER);
         grid.add(hbSignIn, 0, 3, 2, 1);
         final Text actionTarget = new Text("Hi");
+        HelloApplication.actionTarget = actionTarget;
         actionTarget.setFont(Font.font(30));
         grid.add(actionTarget, 1, 6);
 
@@ -135,6 +150,13 @@ public class HelloApplication extends Application {
                 if(!nonUnique){
                     crudHandler.insertData(username,password);
 
+                    crudHandler.retrieveData();
+                    for (User user : CRUDHandler.users) {
+                        if (username.equals(user.username)) {
+                            loggedInUserID = user.id;
+                        }
+                    }
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
                     try {
                         Scene scene = new Scene(loader.load());
@@ -157,6 +179,12 @@ public class HelloApplication extends Application {
 
                 for (User user : CRUDHandler.users) {
                     if (username.equals(user.username) && password.equals(user.password)) {
+                        crudHandler.retrieveData();
+                        for (User usera : CRUDHandler.users) {
+                            if (username.equals(usera.username)) {
+                                loggedInUserID = usera.id;
+                            }
+                        }
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
                         try {
                             Scene scene = new Scene(loader.load());
@@ -183,6 +211,7 @@ public class HelloApplication extends Application {
 
 
         Scene scene = new Scene(pnMain, 700, 560);
+        HelloApplication.scene = scene;
         stage.setScene(scene);
         stage.show();
     }
