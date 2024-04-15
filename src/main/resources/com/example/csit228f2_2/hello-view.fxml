@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="367.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228f2_2.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="167.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <TextField fx:id="tfnewUsername" text="New username" />
+            <Button fx:id="setNewUsername" mnemonicParsing="false" text="Set new username" />
+            <TextField fx:id="tfnewPassword" text="New password" />
+            <Button fx:id="setNewPassword" mnemonicParsing="false" text="Set new password" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
