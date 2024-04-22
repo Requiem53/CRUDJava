@@ -157,12 +157,13 @@ public class HelloApplication extends Application {
                         }
                     }
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("notes-view.fxml"));
                     try {
                         Scene scene = new Scene(loader.load());
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException e) {
+                        e.printStackTrace();
                         throw new RuntimeException(e);
                     }
                 }
@@ -185,12 +186,13 @@ public class HelloApplication extends Application {
                                 loggedInUserID = usera.id;
                             }
                         }
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("notes-view.fxml"));
                         try {
                             Scene scene = new Scene(loader.load());
                             stage.setScene(scene);
                             stage.show();
                         } catch (IOException e) {
+                            e.printStackTrace();
                             throw new RuntimeException(e);
                         }
                     }
