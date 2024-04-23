@@ -20,10 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class NotesView {
 
@@ -50,16 +47,37 @@ public class NotesView {
     @FXML
     public void initialize() throws SQLException {
         txtLoggedInAs.setText("Logged in as " + HelloApplication.currUser);
+        txtStatus.setOpacity(0);
         connection = MySQLConnection.getConnection();
         crudHandler = new CRUDHandler();
 
         Statement statement = connection.createStatement();
-        String createTableQuery = "CREATE TABLE IF NOT EXISTS notes (" +
+
+        String createTableQuery = "CREATE TABLE IF NOT EXISTS users ("
+                + "id INT AUTO_INCREMENT PRIMARY KEY,"
+                + "username VARCHAR(50) NOT NULL,"
+                + "password VARCHAR(50) NOT NULL)";
+        statement.execute(createTableQuery);
+
+
+        String createNotesTableQuery = "CREATE TABLE IF NOT EXISTS notes (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY," +
                 "noteTitle VARCHAR(500) NOT NULL," +
                 "noteContent VARCHAR(500) NOT NULL," +
                 "userID int," +
                 "FOREIGN KEY (userID) REFERENCES users(id))";
+        statement.execute(createNotesTableQuery);
+
+        String gatherNotesQuery = "SELECT * FROM notes WHERE userID = " + HelloApplication.loggedInUserID;
+        ResultSet allUserNotes = statement.executeQuery(gatherNotesQuery);
+
+        while (allUserNotes.next()){
+            String noteTitle = allUserNotes.getString("noteTitle");
+            String noteContent = allUserNotes.getString("noteContent");
+            vNotesField.getChildren().add(0, newNote(noteTitle, noteContent));
+            txtStatus.setOpacity(0);
+
+        }
     }
 
     @FXML
