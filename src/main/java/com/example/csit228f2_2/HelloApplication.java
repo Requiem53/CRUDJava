@@ -41,6 +41,8 @@ public class HelloApplication extends Application {
     public static PasswordField pfPassword;
     public static Text actionTarget;
 
+    public static String currUser;
+
     @Override
     public void start(Stage stage) throws Exception {
         CRUDHandler crudHandler = new CRUDHandler();
@@ -158,6 +160,7 @@ public class HelloApplication extends Application {
                     }
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("notes-view.fxml"));
+                    currUser = username;
                     try {
                         Scene scene = new Scene(loader.load());
                         stage.setScene(scene);
@@ -187,6 +190,7 @@ public class HelloApplication extends Application {
                             }
                         }
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("notes-view.fxml"));
+                        currUser = username;
                         try {
                             Scene scene = new Scene(loader.load());
                             stage.setScene(scene);
