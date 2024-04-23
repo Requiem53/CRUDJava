@@ -85,24 +85,33 @@ public class NotesView {
         String noteTitle = tfNoteTitle.getText();
         String noteContent = taNoteContent.getText();
 
-        PreparedStatement preparedStatement = connection.prepareStatement(
-          "INSERT INTO notes (noteTitle, noteContent, userID) VALUES (?, ?, ?)"
-        );
-        
-        preparedStatement.setString(1, noteTitle);
-        preparedStatement.setString(2, noteContent);
-        preparedStatement.setInt(3, HelloApplication.loggedInUserID);
-        System.out.println(HelloApplication.loggedInUserID);
-
-        preparedStatement.executeUpdate();
-
         vNotesField.getChildren().add(0, newNote(noteTitle, noteContent));
     }
 
-    public Group newNote(String noteTitle, String noteContent){
+    public Group newNote(String noteTitle, String noteContent) throws SQLException {
         Group note = new Group();
         HBox hBox = new HBox();
         VBox vBox = new VBox();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "INSERT INTO notes (noteTitle, noteContent, userID) VALUES (?, ?, ?)",
+                PreparedStatement.RETURN_GENERATED_KEYS
+        );
+
+        preparedStatement.setString(1, noteTitle);
+        preparedStatement.setString(2, noteContent);
+        preparedStatement.setInt(3, HelloApplication.loggedInUserID);
+
+        preparedStatement.executeUpdate();
+
+        ResultSet insertID = preparedStatement.getGeneratedKeys();
+        insertID.next();
+
+        int noteID = insertID.getInt(1);
+
+        System.out.println("MAYBE KEY: " + noteID);
+
+        note.setId(Integer.toString(noteID));
 
         note.getChildren().add(hBox);
         hBox.getChildren().add(vBox);
