@@ -12,137 +12,153 @@
         <content>
           <AnchorPane>
                <children>
-                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minHeight="400.0" minWidth="577.0" prefHeight="566.0" prefWidth="562.0">
+                  <Group>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="KNOWTS" textAlignment="CENTER" wrappingWidth="600.0">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="txtLoggedInAs" strokeType="OUTSIDE" strokeWidth="0.0" text="Logged in as feche" textAlignment="CENTER" wrappingWidth="600.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Text>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minHeight="400.0" minWidth="543.0" prefHeight="566.0" prefWidth="599.0">
                            <children>
-                              <VBox>
-                                 <children>
-                                    <TextField fx:id="tfNoteTitle" promptText="Type note title here..">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <TextArea fx:id="taNoteContent" prefHeight="56.0" prefWidth="400.0" promptText="Type note content here.." />
-                                 </children>
-                              </VBox>
-                              <Button fx:id="btnCreateNote" mnemonicParsing="false" onAction="#createNote" text="Create New Note">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="KNOWTS" textAlignment="CENTER" wrappingWidth="600.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="txtLoggedInAs" strokeType="OUTSIDE" strokeWidth="0.0" text="Logged in as feche" textAlignment="CENTER" wrappingWidth="600.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
-                                 <HBox.margin>
+                              </Text>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <TextField fx:id="tfNoteTitle" promptText="Type note title here..">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextArea fx:id="taNoteContent" prefHeight="56.0" prefWidth="400.0" promptText="Type note content here.." />
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="btnCreateNote" mnemonicParsing="false" onAction="#createNote" text="Create New Note">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="20.0" right="5.0" top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Text fx:id="txtStatus" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <VBox fx:id="vNotesField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="562.0">
+                                 <children>
+                                    <Group fx:id="rtest">
+                                       <children>
+                                          <HBox>
+                                             <children>
+                                                <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="450.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Test Note" wrappingWidth="93.13671875">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Show me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problem" wrappingWidth="400.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </VBox>
+                                                <VBox>
+                                                   <children>
+                                                      <Button minWidth="60.0" mnemonicParsing="false" text="Edit" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets bottom="5.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Button minWidth="60.0" mnemonicParsing="false" text="Delete" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Group>
+                                    <Group fx:id="rtest2">
+                                       <children>
+                                          <HBox>
+                                             <children>
+                                                <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="450.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Test Note" wrappingWidth="93.13671875">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Show me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problem" wrappingWidth="400.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </VBox>
+                                                <VBox>
+                                                   <children>
+                                                      <Button minWidth="60.0" mnemonicParsing="false" text="Edit" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets bottom="5.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Button minWidth="60.0" mnemonicParsing="false" text="Delete" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Group>
+                                    <Button mnemonicParsing="false" onAction="#onLogout" text="Logout" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
                                     <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Button>
+                                 </VBox.margin>
+                              </VBox>
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="5.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <VBox fx:id="vNotesField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="562.0">
-                           <children>
-                              <Group fx:id="rtest">
-                                 <children>
-                                    <HBox>
-                                       <children>
-                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="450.0">
-                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Test Note" wrappingWidth="93.13671875">
-                                                   <font>
-                                                      <Font name="System Bold" size="18.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Show me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problem" wrappingWidth="400.0">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <VBox>
-                                             <children>
-                                                <Button minWidth="60.0" mnemonicParsing="false" text="Edit" textAlignment="CENTER">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Button>
-                                                <Button minWidth="60.0" mnemonicParsing="false" text="Delete" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="20.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Group>
-                              <Group fx:id="rtest2">
-                                 <children>
-                                    <HBox>
-                                       <children>
-                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="450.0">
-                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Test Note" wrappingWidth="93.13671875">
-                                                   <font>
-                                                      <Font name="System Bold" size="18.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Show me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problemShow me that solvable problem" wrappingWidth="400.0">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <VBox>
-                                             <children>
-                                                <Button minWidth="60.0" mnemonicParsing="false" text="Edit" textAlignment="CENTER">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Button>
-                                                <Button minWidth="60.0" mnemonicParsing="false" text="Delete" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="20.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Group>
-                              <Button mnemonicParsing="false" text="Logout" textAlignment="CENTER">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
                         </VBox>
-                     </children></VBox>
+                     </children></Group>
                </children></AnchorPane>
         </content>
       </ScrollPane>

@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
@@ -37,6 +38,9 @@ public class NotesView {
 
     @FXML
     private VBox vNotesField;
+
+    @FXML
+    private Text txtStatus;
 
     private CRUDHandler crudHandler;
     private Connection connection;
@@ -70,10 +74,11 @@ public class NotesView {
         preparedStatement.setString(1, noteTitle);
         preparedStatement.setString(2, noteContent);
         preparedStatement.setInt(3, HelloApplication.loggedInUserID);
-
-        vNotesField.getChildren().add(0, newNote(noteTitle, noteContent));
+        System.out.println(HelloApplication.loggedInUserID);
 
         preparedStatement.executeUpdate();
+
+        vNotesField.getChildren().add(0, newNote(noteTitle, noteContent));
     }
 
     public Group newNote(String noteTitle, String noteContent){
@@ -97,7 +102,7 @@ public class NotesView {
         noteTitleContainer.setStrokeType(StrokeType.OUTSIDE);
         noteTitleContainer.setStrokeWidth(0.0);
         noteTitleContainer.setText(noteTitle);
-        noteTitleContainer.setWrappingWidth(94);
+        noteTitleContainer.setWrappingWidth(400);
         noteTitleContainer.setFont(new Font("System Bold", 18.0));
         VBox.setMargin(noteTitleContainer, new Insets(0,0,10.0,0));
 
@@ -141,7 +146,21 @@ public class NotesView {
             }
         });
 
+        txtStatus.setText("Successfully added note");
+        txtStatus.setFill(Paint.valueOf("GREEN"));
+        txtStatus.setOpacity(1);
         noteCounter++;
         return note;
+    }
+
+    @FXML
+    public void onLogout(){
+        HelloApplication.tfUsername.clear();
+        HelloApplication.pfPassword.clear();
+        HelloApplication.actionTarget.setText("");
+        HelloApplication.actionTarget.setOpacity(0);
+
+        HelloApplication.stage.setScene(HelloApplication.scene);
+        HelloApplication.stage.show();
     }
 }
