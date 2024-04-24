@@ -53,7 +53,7 @@ public class HelloApplication extends Application {
         GridPane grid = new GridPane();
         pnMain.getChildren().add(grid);
         grid.setAlignment(Pos.CENTER);
-        Text sceneTitle = new Text("Welcome to CSIT228");
+        Text sceneTitle = new Text("KNOWTS");
         sceneTitle.setStrokeType(StrokeType.CENTERED);
         sceneTitle.setStrokeWidth(100);
         sceneTitle.setFill(Paint.valueOf("#325622"));
@@ -118,7 +118,7 @@ public class HelloApplication extends Application {
         hbSignIn.getChildren().add(btnSignIn);
         hbSignIn.setAlignment(Pos.CENTER);
         grid.add(hbSignIn, 0, 3, 2, 1);
-        final Text actionTarget = new Text("Hi");
+        final Text actionTarget = new Text("");
         HelloApplication.actionTarget = actionTarget;
         actionTarget.setFont(Font.font(30));
         grid.add(actionTarget, 1, 6);
@@ -141,11 +141,13 @@ public class HelloApplication extends Application {
 
                 boolean nonUnique = false;
 
-                for (User user : CRUDHandler.users) {
-                    if (username.equals(user.username)) {
-                        actionTarget.setText("Username already in use");
-                        actionTarget.setOpacity(1);
-                        nonUnique = true;
+                synchronized (CRUDHandler.users){
+                    for (User user : CRUDHandler.users) {
+                        if (username.equals(user.username)) {
+                            actionTarget.setText("Username already in use");
+                            actionTarget.setOpacity(1);
+                            nonUnique = true;
+                        }
                     }
                 }
 
@@ -181,23 +183,25 @@ public class HelloApplication extends Application {
                 //ADD USER TO DATABASE
                 crudHandler.retrieveData();
 
-                for (User user : CRUDHandler.users) {
-                    if (username.equals(user.username) && password.equals(user.password)) {
-                        crudHandler.retrieveData();
-                        for (User usera : CRUDHandler.users) {
-                            if (username.equals(usera.username)) {
-                                loggedInUserID = usera.id;
+                synchronized (CRUDHandler.users){
+                    for (User user : CRUDHandler.users) {
+                        if (username.equals(user.username) && password.equals(user.password)) {
+                            crudHandler.retrieveData();
+                            for (User usera : CRUDHandler.users) {
+                                if (username.equals(usera.username)) {
+                                    loggedInUserID = usera.id;
+                                }
                             }
-                        }
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("notes-view.fxml"));
-                        currUser = username;
-                        try {
-                            Scene scene = new Scene(loader.load());
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            throw new RuntimeException(e);
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("notes-view.fxml"));
+                            currUser = username;
+                            try {
+                                Scene scene = new Scene(loader.load());
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }

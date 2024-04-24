@@ -5,14 +5,15 @@ import com.example.csit228f2_2.User;
 import java.net.MalformedURLException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CRUDHandler {
     public static final String URL = "jdbc:mysql://localhost:3306/javadb";
-    public static final String USERNAME = "requiem53";
-    public static final String PASSWORD = "requiem53";
+    public static final String USERNAME = "testicles";
+    public static final String PASSWORD = "";
 
-    public static List<User> users;
+    public static final List<User> users = Collections.synchronizedList(new ArrayList<>());
 
     public static Connection getConnection(){
         Connection c = null;
@@ -28,7 +29,6 @@ public class CRUDHandler {
     }
 
     public CRUDHandler(){
-        users = new ArrayList<>();
         getConnection();
         createTable();
     }
@@ -70,13 +70,15 @@ public class CRUDHandler {
             users.clear();
             String selectQuery = "SELECT * FROM users";
             ResultSet resultSet = statement.executeQuery(selectQuery);
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String username = resultSet.getString("username");
-                String password = resultSet.getString("password");
+            synchronized (users){
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String username = resultSet.getString("username");
+                    String password = resultSet.getString("password");
 
-                System.out.println("ID: " + id + ", Username: " + username + ", Password: " + password);
-                users.add(new User(id, username, password));
+                    System.out.println("ID: " + id + ", Username: " + username + ", Password: " + password);
+                    users.add(new User(id, username, password));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
